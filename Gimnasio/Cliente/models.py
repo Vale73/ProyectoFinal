@@ -17,3 +17,7 @@ class Turno(models.Model):
 
     def __str__(self):
         return f"Turno de {self.cliente} el {self.fecha} a las {self.hora}"
+    
+
+
+# Falta la creación de urls de Cliente
