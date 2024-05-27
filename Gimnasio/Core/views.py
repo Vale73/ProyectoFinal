@@ -12,7 +12,8 @@ def registro_view(request):
     if request.method == 'POST':
         form = RegistroForm(request.POST)
         if form.is_valid():
-            form.save()
+            User= form.save()
+            login(request,User )
             return redirect('login')
     else:
         form = RegistroForm()

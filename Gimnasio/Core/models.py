@@ -4,7 +4,7 @@
 
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 
 class UsuarioManager(BaseUserManager):
     def create_user(self, username, password=None, user_type='regular'):
@@ -36,3 +36,5 @@ class Usuario(AbstractUser):
         ('normal', 'Normal'),
     )
     user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES, default='normal')
+    groups = models.ManyToManyField(Group, related_name='core_user_set', blank=True)
+    user_permissions = models.ManyToManyField(Permission, related_name='core_user_set', blank=True)
