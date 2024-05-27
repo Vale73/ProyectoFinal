@@ -4,6 +4,7 @@
 
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser
 
 class UsuarioManager(BaseUserManager):
     def create_user(self, username, password=None, user_type='regular'):
@@ -17,14 +18,21 @@ class UsuarioManager(BaseUserManager):
     def create_superuser(self, username, password):
         return self.create_user(username, password, user_type='admin')
 
-class Usuario(AbstractBaseUser):
-    username = models.CharField(max_length=150, unique=True)
-    user_type = models.CharField(max_length=50)
+#class Usuario(AbstractBaseUser):
+#    username = models.CharField(max_length=150, unique=True)
+#    user_type = models.CharField(max_length=50)
     
-    objects = UsuarioManager()
+#    objects = UsuarioManager()
     
-    USERNAME_FIELD = 'username'
+#    USERNAME_FIELD = 'username'
     
-    def __str__(self):
-        return self.username
+#    def __str__(self):
+#        return self.username
+    
 
+class Usuario(AbstractUser):
+    USER_TYPE_CHOICES = (
+        ('admin', 'Admin'),
+        ('normal', 'Normal'),
+    )
+    user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES, default='normal')
