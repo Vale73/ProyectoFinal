@@ -8,7 +8,7 @@ class Cliente(models.Model):
     direccion = models.CharField(max_length=255, blank=True, null=True)
     fecha_nacimiento = models.DateField(blank=True, null=True)
 
-    def __str__(self):
+    def _str_(self):
         return self.usuario.username
 
 class Profesor(models.Model):
@@ -16,14 +16,14 @@ class Profesor(models.Model):
     especialidad = models.CharField(max_length=200)
     descripcion = models.TextField()
 
-    def __str__(self):
+    def _str_(self):
         return self.nombre
 
 class TipoEntrenamiento(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
 
-    def __str__(self):
+    def _str_(self):
         return self.nombre
 
 class Turno(models.Model):
@@ -32,6 +32,14 @@ class Turno(models.Model):
     fecha = models.DateField()
     hora = models.TimeField()
 
-    def __str__(self):
+    def _str_(self):
         return f'{self.usuario} - {self.entrenamiento} - {self.fecha} {self.hora}'
 
+class ReservaTurno(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    fecha = models.DateField()
+    hora = models.TimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def _str_(self):
+        return f"{self.usuario} - {self.fecha} {self.hora}"

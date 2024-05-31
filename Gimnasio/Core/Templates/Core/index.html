@@ -1,8 +1,35 @@
 {% extends 'Core/base.html' %}
 
-{% block title %}Inicio{% endblock %}
+{% block title %}Inicio - Gimnasio{% endblock %}
 
 {% block content %}
-<h1>Bienvenido a nuestro Gimnasio</h1>
-<p>Encuentra los mejores entrenadores y opciones de entrenamiento.</p>
+<div class="container mt-5">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Bienvenido a Nuestro Gimnasio!</h1>
+        <p class="lead">Tu lugar ideal para ponerte en forma y alcanzar tus metas de salud.</p>
+        <hr class="my-4">
+        <p>Ofrecemos una variedad de clases y servicios para todos los niveles.</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'registro' %}" role="button">Regístrate</a>
+        <a class="btn btn-secondary btn-lg" href="{% url 'login' %}" role="button">Inicia Sesión</a>
+    </div>
+    
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h3>Horarios</h3>
+            <p>Lunes a Viernes: 6:00 AM - 10:00 PM</p>
+            <p>Sábados: 8:00 AM - 8:00 PM</p>
+            <p>Domingos: 9:00 AM - 6:00 PM</p>
+        </div>
+        <div class="col-md-6">
+            <h3>Clases Disponibles</h3>
+            <ul>
+                <li>Yoga</li>
+                <li>Crossfit</li>
+                <li>Spinning</li>
+                <li>Zumba</li>
+                <li>Boxeo</li>
+            </ul>
+        </div>
+    </div>
+</div>
 {% endblock %}

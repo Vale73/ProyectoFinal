@@ -1,14 +1,22 @@
-{% extends "Core/base.html" %}
+{% extends 'Core/base.html' %}
 
-{% block title %}
-Opciones de Entrenamiento
-{% endblock %}
+{% block title %}Opciones de Entrenamiento{% endblock %}
 
 {% block content %}
-<h1>Opciones de Entrenamiento</h1>
-<ul>
-    {% for entrenamiento in entrenamientos %}
-    <li>{{ entrenamiento.nombre }}: {{ entrenamiento.descripcion }}</li>
-    {% endfor %}
-</ul>
+<div class="container mt-5">
+    <h1>Opciones de Entrenamiento</h1>
+    <div class="row">
+        {% for entrenamiento in entrenamientos %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ entrenamiento.nombre }}</h5>
+                    <p class="card-text">{{ entrenamiento.descripcion }}</p>
+                    <a href="{% url 'inscripcion_entrenamiento' entrenamiento.id %}" class="btn btn-primary">Inscribirse</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

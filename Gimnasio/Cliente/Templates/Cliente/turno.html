@@ -1,17 +1,23 @@
 {% extends 'Core/base.html' %}
 
-{% block title %}Turnos{% endblock %}
+{% block title %}Reserva de Turnos{% endblock %}
 
 {% block content %}
-<h1>Mis Turnos</h1>
-<ul>
-    {% for turno in turnos %}
-    <li>{{ turno.entrenamiento.nombre }} el {{ turno.fecha }} a las {{ turno.hora }}</li>
-    {% endfor %}
-</ul>
-<form method="post">
-    {% csrf_token %}
-    <!-- Aquí puedes añadir campos para seleccionar un turno -->
-    <button type="submit">Reservar Turno</button>
-</form>
+<div class="container mt-5">
+    <h1>Reserva de Turnos</h1>
+
+    <h2>Horarios Disponibles</h2>
+    <ul>
+        <li>Lunes a Viernes: 06:00 AM - 10:00 PM</li>
+        <li>Sábados: 08:00 AM - 08:00 PM</li>
+        <li>Domingos: 09:00 AM - 06:00 PM</li>
+    </ul>
+
+    <h2>Reservar Turno</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Reservar</button>
+    </form>
+</div>
 {% endblock %}
