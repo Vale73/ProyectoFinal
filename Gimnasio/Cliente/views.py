@@ -7,8 +7,11 @@ import datetime
 
 @login_required
 def cliente_detalle(request):
-    cliente = get_object_or_404(Cliente, usuario=request.user)
-    return render(request, 'Cliente/cliente_detalle.html', {'cliente': cliente})
+    if hasattr(request.user, 'cliente'):
+        cliente = request.user.cliente
+        return render(request, 'Cliente/cliente_detalle.html')
+    else:
+        return redirect('paginaprincipal')
 
 def paginaprincipal(request):
     return render(request, 'Cliente/paginaprincipal.html')

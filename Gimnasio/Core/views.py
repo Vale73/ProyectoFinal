@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib import messages
 
 def index(request):
     return render(request, 'Core/index.html')
@@ -28,9 +29,9 @@ def login_view(request):
     return render(request, 'Core/login.html', {'form': form})
 
 def logout_view(request):
-    if request.method == 'POST':
-        logout(request)
-        return redirect('Core/login.html')
+    logout(request)
+    messages.info(request, '¡Gracias por elegirnos! ¡Nos vemos pronto!')
+    return redirect('login')
 
 
 
