@@ -1,0 +1,14 @@
+{% extends 'Core/base.html' %}
+
+{% block title %}Mi Perfil{% endblock %}
+
+{% block content %}
+<h1>Mi Perfil</h1>
+<ul>
+    <li>Nombre de Usuario: {{ cliente.usuario.username }}</li>
+    <li>Email: {{ cliente.usuario.email }}</li>
+    <li>Teléfono: {{ cliente.telefono }}</li>
+    <li>Dirección: {{ cliente.direccion }}</li>
+    <li>Fecha de Nacimiento: {{ cliente.fecha_nacimiento }}</li>
+</ul>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "Core/base.html" %}
+
+{% block title %}
+Opciones de Entrenamiento
+{% endblock %}
+
+{% block content %}
+<h1>Opciones de Entrenamiento</h1>
+<ul>
+    {% for entrenamiento in entrenamientos %}
+    <li>{{ entrenamiento.nombre }}: {{ entrenamiento.descripcion }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

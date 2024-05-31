@@ -1,33 +1,30 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from .models import Profesor, TipoEntrenamiento, Turno, Cliente
 
-# Create your views here.
+@login_required
+def cliente_detalle(request):
+    cliente = get_object_or_404(Cliente, usuario=request.user)
+    return render(request, 'Cliente/cliente_detalle.html', {'cliente': cliente})
 
-from .models import Cliente, Turno
+def paginaprincipal(request):
+    return render(request, 'Cliente/paginaprincipal.html')
 
-def lista_clientes(request):
-    clientes = Cliente.objects.all()
-    return render(request, 'cliente/lista_clientes.html', {'clientes': clientes})
+def opcion_entrenamiento(request):
+    entrenamientos = TipoEntrenamiento.objects.all()
+    return render(request, 'Cliente/opcion_entrenamiento.html', {'entrenamientos': entrenamientos})
 
-def detalle_cliente(request, cliente_id):
-    cliente = Cliente.objects.get(pk=cliente_id)
-    return render(request, 'cliente/detalle_cliente.html', {'cliente': cliente})
-
-def crear_cliente(request):
+@login_required
+def turno(request):
     if request.method == 'POST':
-        nombre = request.POST['nombre']
-        edad = request.POST['edad']
-        Cliente.objects.create(nombre=nombre, edad=edad)
-        return redirect('lista_clientes')
-    return render(request, 'cliente/crear_cliente.html')
+        pass
+    turnos = Turno.objects.filter(usuario=request.user)
+    return render(request, 'Cliente/turno.html', {'turnos': turnos})
 
-def eliminar_cliente(request, cliente_id):
-    cliente = Cliente.objects.get(pk=cliente_id)
-    cliente.delete()
-    return redirect('lista_clientes')
+def profesores(request):
+    profesores = Profesor.objects.all()
+    return render(request, 'Cliente/profesores.html', {'profesores': profesores})
 
-def about(request):
-    return render(request, 'cliente/about.html')
-
-def home(request):
-    return render(request, 'cliente/home.html')
+def about_me(request):
+    return render(request, 'Cliente/about_me.html')
 
